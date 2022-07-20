@@ -110,6 +110,7 @@ describe JavaBuildpack::Framework::JavaOpts do
   it 'does not include $JAVA_OPTS without from_environment' do
     component.release
     expect(java_opts).not_to include('$JAVA_OPTS')
+    expect(java_opts).to include('-XX:OnOutOfMemoryError=kill\ -9\ \%p')
   end
 
 end

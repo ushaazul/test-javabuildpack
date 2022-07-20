@@ -24,6 +24,12 @@ module JavaBuildpack
 
     # Encapsulates the detect, compile, and release functionality for selecting an Azul Platform Prime JRE.
     class ZingJRE < OpenJDKLike
+    def sub_components(context)
+          [
+            OpenJDKLikeJre.new(sub_configuration_context(context, 'jre')
+                               .merge(component_name: self.class.to_s.space_case)),
+            OpenJDKLikeSecurityProviders.new(context)
+          ]
     end
 
   end
